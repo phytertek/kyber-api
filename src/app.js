@@ -4,12 +4,12 @@ import passport from 'passport'
 import morgan from 'morgan'
 import bodyParser from 'body-parser'
 import session from 'express-session'
+import helmet from 'helmet'
 
 // // my packages
-// import { facebook } from '../config'
 import authRoutes from './authentication'
-import defaultRoutes from './base'
 import userRoutes from './user'
+import defaultRoutes from './base'
 import { logger } from './utilities'
 import { authConfig } from '../config'
 
@@ -19,6 +19,9 @@ const app = express()
 app.set('views', __dirname + '/views')
 app.set('view engine', 'ejs')
 // TODO KILL
+
+// Header security
+app.use(helmet())
 
 // Logger
 app.use(morgan('combined', { stream: logger.stream }))
