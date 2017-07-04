@@ -9,6 +9,5 @@ package-lock.json
 # Private Configuration
 src/config.js
 
-
-# Build 
-pub/config.js
+# Remove ENV for repository
+.env
