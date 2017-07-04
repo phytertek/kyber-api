@@ -9,16 +9,10 @@ import helmet from 'helmet'
 // // my packages
 import authRoutes from './authentication'
 import userRoutes from './user'
-import defaultRoutes from './base'
 import { logger } from './utilities'
 import { authConfig } from '../config'
 
 const app = express()
-
-// TODO KILL Configure view engine to render EJS templates. 
-app.set('views', __dirname + '/views')
-app.set('view engine', 'ejs')
-// TODO KILL
 
 // Header security
 app.use(helmet())
@@ -46,21 +40,11 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 
-
-defaultRoutes(app)
+// Routes
 userRoutes(app)
-
-// app.get('/profile',
-//   require('connect-ensure-login').ensureLoggedIn(),
-//   function(req, res){
-//     res.render('profile', { user: req.user })
-//   })
-
-
-// app.use(authRoutes)
 authRoutes(app)
 
-  // catch all unhandled errors
+// catch all unhandled errors
 app.use((req, res) => {
   const message = { error: `Unable to resolve ${req.originalUrl}`}
   logger.error(message)
