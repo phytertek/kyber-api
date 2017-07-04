@@ -2,7 +2,7 @@
 import app from './app'
 import { connect as dbConnect } from './db'
 import { logger } from './utilities'
-import { appConfig } from '../config'
+import { appConfig } from './config'
 
 // connect to db
 dbConnect(() => {

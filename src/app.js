@@ -10,7 +10,7 @@ import helmet from 'helmet'
 import authRoutes from './authentication'
 import userRoutes from './user'
 import { logger } from './utilities'
-import { authConfig } from '../config'
+import { authConfig } from './config'
 
 const app = express()
 

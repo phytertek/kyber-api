@@ -7,4 +7,8 @@ npm-debug.log
 package-lock.json
 
 # Private Configuration
-config.js
+src/config.js
+
+
+# Build 
+pub/config.js

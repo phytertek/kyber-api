@@ -1,8 +1,14 @@
-import passport from "passport"
-import { Strategy } from "passport-facebook"
+"use strict";
 
-// my packages
-import { fbConfig } from "../config"
+var _passport = require("passport");
+
+var _passport2 = _interopRequireDefault(_passport);
+
+var _passportFacebook = require("passport-facebook");
+
+var _config = require("../config");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // Configure Passport authenticated session persistence.
 //
@@ -13,13 +19,16 @@ import { fbConfig } from "../config"
 // from the database when deserializing.  However, due to the fact that this
 // example does not have a database, the complete fbConfig profile is serialized
 // and deserialized.
-passport.serializeUser(function(user, cb) {
-  cb(null, user)
-})
+_passport2.default.serializeUser(function (user, cb) {
+  cb(null, user);
+});
 
-passport.deserializeUser(function(obj, cb) {
-  cb(null, obj)
-})
+// my packages
+
+
+_passport2.default.deserializeUser(function (obj, cb) {
+  cb(null, obj);
+});
 
 // Configure the fbConfig strategy for use by Passport.
 //
@@ -28,13 +37,11 @@ passport.deserializeUser(function(obj, cb) {
 // behalf, along with the user's profile.  The function must invoke `cb`
 // with a user object, which will be set at `req.user` in route handlers after
 // authentication.
-passport.use(
-  new Strategy(fbConfig, (accessToken, refreshToken, profile, cb) => {
-    // In this example, the user's Facebook profile is supplied as the user
-    // record.  In a production-quality application, the Facebook profile should
-    // be associated with a user record in the application's database, which
-    // allows for account linking and authentication with other identity
-    // providers.
-    return cb(null, profile)
-  })
-)
+_passport2.default.use(new _passportFacebook.Strategy(_config.fbConfig, (accessToken, refreshToken, profile, cb) => {
+  // In this example, the user's Facebook profile is supplied as the user
+  // record.  In a production-quality application, the Facebook profile should
+  // be associated with a user record in the application's database, which
+  // allows for account linking and authentication with other identity
+  // providers.
+  return cb(null, profile);
+}));
